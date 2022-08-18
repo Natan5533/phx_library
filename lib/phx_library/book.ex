@@ -1,7 +1,7 @@
 defmodule PhxLibrary.Book do
   use Ecto.Schema
   import Ecto.Changeset
-  alias PhxLibrary.Library
+  alias PhxLibrary.{Library, Book}
 
   schema "books" do
     field :title, :string
@@ -11,7 +11,7 @@ defmodule PhxLibrary.Book do
   end
 
   @doc false
-  def changeset(book, attrs) do
+  def changeset(%Book{} = book \\ %Book{}, attrs) do
     book
     |> cast(attrs, [:title, :author_id])
     |> validate_required([:title, :author_id])
