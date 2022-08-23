@@ -1,6 +1,6 @@
 defmodule Factory do
   use ExMachina.Ecto, repo: PhxLibrary.Repo
-  alias PhxLibrary.{Library, Author}
+  alias PhxLibrary.{Library, Author, Book}
 
   def library_factory do
     %Library{
@@ -14,6 +14,13 @@ defmodule Factory do
       name: "Pix",
       email: "a@a",
       library: build(:library)
+    }
+  end
+
+  def book_factory do
+    %Book{
+      title: "Title",
+      author: build(:author)
     }
   end
 end

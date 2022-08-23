@@ -1,7 +1,6 @@
 defmodule PhxLibraryWeb.AuthorsController do
   use PhxLibraryWeb, :controller
   alias PhxLibraryWeb.{ErrorView, AuthorsView}
-
   alias PhxLibrary.Entities.Authors
 
   def create(conn, params)do
