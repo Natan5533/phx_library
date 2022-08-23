@@ -1,11 +1,11 @@
 defmodule PhxLibrary.Book do
   use Ecto.Schema
   import Ecto.Changeset
-  alias PhxLibrary.{Library, Book}
+  alias PhxLibrary.{Author, Book}
 
   schema "books" do
     field :title, :string
-    belongs_to :author, Library
+    belongs_to :author, Author
 
     timestamps()
   end
