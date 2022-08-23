@@ -7,7 +7,7 @@ defmodule Entities.BookTest do
   test "Create new book" do
     author = insert(:author)
 
-    book_params = %Book{title: "title", author_id: author.id}
+    book_params = %{title: "title", author_id: author.id}
 
     assert {:ok, _} = Books.create(book_params)
   end
@@ -15,10 +15,10 @@ defmodule Entities.BookTest do
   test "Return one  book by author" do
     author = insert(:author)
 
-    book_params = %Book{title: "title", author_id: author.id}
+    book_params = %{title: "title", author_id: author.id}
     {_, book} = Books.create(book_params)
 
-    book_returned = Books.show_by_id(book.id)
+    {:ok, book_returned} = Books.show_by_id(book.id)
 
     assert book_returned.title == "title"
   end
@@ -26,22 +26,22 @@ defmodule Entities.BookTest do
   test "Delete book by id" do
     author = insert(:author)
 
-    book_params = %Book{title: "book deleted", author_id: author.id}
+    book_params = %{title: "book deleted", author_id: author.id}
     {_, book} = Books.create(book_params)
 
-    book_returned = Books.show_by_id(book.id)
+    {:ok, book_returned} = Books.show_by_id(book.id)
 
     assert {:ok, _} = Books.delete(book_returned)
-    assert Books.show_by_id(book.id) == nil
+    assert {:error, :Book_not_found} == Books.show_by_id(book.id)
   end
 
   test "Update book" do
     author = insert(:author)
 
-    book_params = %Book{title: "Error", author_id: author.id}
+    book_params = %{title: "Error", author_id: author.id}
     {_, book} = Books.create(book_params)
 
-    book_returned = Books.show_by_id(book.id)
+    {:ok, book_returned} = Books.show_by_id(book.id)
 
     assert {:ok, book_struct} = Books.update(book_returned, %{title: "new title"})
     assert book_struct.title == "new title"
