@@ -1,0 +1,22 @@
+name: Library CI
+
+on: push
+  test: 
+    runs-on: ubuntu-latest
+
+    services:
+      db: 
+        image: "postgres"
+        ports: ['5432:5432']
+        env: 
+         POSTGRES_USER: postgres
+         POSTGRES_PASSWORD: postgres
+         POSTGRES_DB: bank_shipments_test
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-elixir@v1
+        with: 
+          otp-version: '23'
+          elixir-version: '1.12'
+        - run: mix deps.get
+        - run: mix test
