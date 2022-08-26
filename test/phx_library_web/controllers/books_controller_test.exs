@@ -25,7 +25,6 @@ defmodule BooksControllerTest do
 
   describe "GET show" do
     test "Success", %{conn: conn} do
-    require IEx; IEx.pry
       book = insert(:book)
 
       book_params = book.id
