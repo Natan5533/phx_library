@@ -4,7 +4,7 @@ on: push
 
 jobs: 
   test: 
-    runs-on: 	ubuntu-latest
+    runs-on: ubuntu-18.04N
 
     services:
       db: 
@@ -23,4 +23,4 @@ jobs:
           elixir-version: '1.12.0'
       - run: mix deps.get
       - run: mix test
-      - run: mix credo
+
