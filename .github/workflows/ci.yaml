@@ -4,7 +4,7 @@ on: push
 
 jobs: 
   test: 
-    runs-on: 	ubuntu-latest
+    runs-on: ubuntu-18.04N
 
     services:
       db: 
@@ -17,7 +17,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run:  mix local.hex --force
       - uses: actions/setup-elixir@v1
         with: 
           otp-version: '23.0'
